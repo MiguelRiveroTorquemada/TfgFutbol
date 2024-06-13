@@ -34,13 +34,20 @@ namespace Classes
             return Ok(cliente);
         }
 
-        [HttpPost]
-        public ActionResult<Cliente> AddCliente(Cliente cliente)
-        {
-            _context.Clientes.Add(cliente);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetClienteById), new { id = cliente.id }, cliente);
-        }
+       [HttpPost]
+public ActionResult<Cliente> AddCliente(Cliente cliente)
+{
+    var existingCliente = _context.Clientes.FirstOrDefault(c => c.email == cliente.email);
+    if (existingCliente != null)
+    {
+        return Conflict("Ya existe un cliente con el mismo correo electrónico.");
+    }
+
+    _context.Clientes.Add(cliente);
+    _context.SaveChanges();
+    return CreatedAtAction(nameof(GetClienteById), new { id = cliente.id }, cliente);
+}
+
 
         [HttpPut("{id}")]
         public IActionResult UpdateCliente(int id, Cliente clienteActualizado)
@@ -96,5 +103,8 @@ namespace Classes
             }
             return Ok(cliente);
         }
+
+
+        
     }
 }

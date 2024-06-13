@@ -16,7 +16,9 @@ namespace CpCalasancio.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    enviado = table.Column<bool>(type: "bit", nullable: false)
+                    enviado = table.Column<bool>(type: "bit", nullable: false),
+                    StripeCustomerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StripeSessionId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +51,7 @@ namespace CpCalasancio.Migrations
                     nombrePartido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     primerEquipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     segundoEquipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    puntuacion = table.Column<int>(type: "int", nullable: false),
+                    puntuacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ganado = table.Column<bool>(type: "bit", nullable: false),
                     fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -70,6 +72,7 @@ namespace CpCalasancio.Migrations
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     dni = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isAdmin = table.Column<bool>(type: "bit", nullable: false),
                     Carritoid = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -157,6 +160,8 @@ namespace CpCalasancio.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     precio = table.Column<int>(type: "int", nullable: false),
                     clienteid = table.Column<int>(type: "int", nullable: false),
+                    StripeCustomerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StripeSessionId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Carritoid = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

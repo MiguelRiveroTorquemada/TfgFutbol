@@ -8,6 +8,7 @@ public class Cliente
     public string email { get; set; }
      public string dni { get; set; }
      public string password  { get;set;}
+     public bool isAdmin {get;set;}
 
 
     // Otros atributos del cliente

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CpCalasancio.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240604205032_calasancioDB")]
+    [Migration("20240613035733_calasancioDB")]
     partial class calasancioDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,14 @@ namespace CpCalasancio.Migrations
 
                     b.Property<int?>("Carritoid")
                         .HasColumnType("int");
+
+                    b.Property<string>("StripeCustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StripeSessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("clienteid")
                         .HasColumnType("int");
@@ -57,6 +65,14 @@ namespace CpCalasancio.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("StripeCustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StripeSessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("enviado")
                         .HasColumnType("bit");
@@ -95,6 +111,9 @@ namespace CpCalasancio.Migrations
                     b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("nombre")
                         .IsRequired()
@@ -209,8 +228,9 @@ namespace CpCalasancio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("puntuacion")
-                        .HasColumnType("int");
+                    b.Property<string>("puntuacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("segundoEquipo")
                         .IsRequired()
