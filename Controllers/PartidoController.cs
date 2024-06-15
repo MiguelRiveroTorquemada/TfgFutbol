@@ -151,22 +151,33 @@ public IActionResult PutJugadores(int id, [FromBody] List<Jugador> jugadores)
         return NotFound();
     }
 
-    // Actualizar jugadores
     foreach (var jugador in jugadores)
     {
         var existingJugador = partidoToUpdate.jugadores.FirstOrDefault(j => j.numeroCamiseta == jugador.numeroCamiseta);
         if (existingJugador != null)
         {
-            // Actualizar propiedades del jugador
+            // Actualizar solo las propiedades específicas del jugador existente
             existingJugador.goles = jugador.goles;
-            existingJugador.posicion = jugador.posicion;
             existingJugador.partidosJugados = jugador.partidosJugados;
-            // Actualizar otras propiedades del jugador...
         }
         else
         {
-            // Si el jugador no existe en la lista actual, agregarlo
-            partidoToUpdate.jugadores.Add(jugador);
+            // Buscar el jugador en la base de datos por numeroCamiseta
+            var jugadorFromDb = _context.Jugadores.FirstOrDefault(j => j.numeroCamiseta == jugador.numeroCamiseta);
+            if (jugadorFromDb != null)
+            {
+                // Actualizar solo las propiedades específicas
+                jugadorFromDb.goles = jugador.goles;
+                jugadorFromDb.partidosJugados = jugador.partidosJugados;
+
+                // Añadir el jugador actualizado al partido
+                partidoToUpdate.jugadores.Add(jugadorFromDb);
+            }
+            else
+            {
+                // Manejo si el jugador no se encuentra en la base de datos (opcional)
+                return BadRequest($"Jugador con numeroCamiseta {jugador.numeroCamiseta} no encontrado en la base de datos.");
+            }
         }
     }
 
