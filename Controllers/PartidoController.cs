@@ -142,6 +142,7 @@ public IActionResult PutPartidoOnly(int id, [FromBody] Partido partido)
 [HttpPut("{id}/jugadores")]
 public IActionResult PutJugadores(int id, [FromBody] List<Jugador> jugadores)
 {
+    // Buscar el partido a actualizar
     var partidoToUpdate = _context.Partidos
                                   .Include(p => p.jugadores)
                                   .FirstOrDefault(p => p.id == id);
@@ -153,7 +154,9 @@ public IActionResult PutJugadores(int id, [FromBody] List<Jugador> jugadores)
 
     foreach (var jugador in jugadores)
     {
-        var existingJugador = partidoToUpdate.jugadores.FirstOrDefault(j => j.numeroCamiseta == jugador.numeroCamiseta);
+        // Buscar el jugador existente en el partido por número de camiseta
+        var existingJugador = partidoToUpdate.jugadores
+                                             .FirstOrDefault(j => j.numeroCamiseta == jugador.numeroCamiseta);
         if (existingJugador != null)
         {
             // Actualizar solo las propiedades específicas del jugador existente
@@ -162,16 +165,23 @@ public IActionResult PutJugadores(int id, [FromBody] List<Jugador> jugadores)
         }
         else
         {
-            // Buscar el jugador en la base de datos por numeroCamiseta
-            var jugadorFromDb = _context.Jugadores.FirstOrDefault(j => j.numeroCamiseta == jugador.numeroCamiseta);
+            // Buscar el jugador en la base de datos por número de camiseta
+            var jugadorFromDb = _context.Jugadores
+                                        .FirstOrDefault(j => j.numeroCamiseta == jugador.numeroCamiseta);
             if (jugadorFromDb != null)
             {
-                // Actualizar solo las propiedades específicas
-                jugadorFromDb.goles = jugador.goles;
-                jugadorFromDb.partidosJugados = jugador.partidosJugados;
-
-                // Añadir el jugador actualizado al partido
-                partidoToUpdate.jugadores.Add(jugadorFromDb);
+                // Añadir el jugador encontrado al partido con todas las propiedades necesarias
+                partidoToUpdate.jugadores.Add(new Jugador
+                {
+                    numeroCamiseta = jugadorFromDb.numeroCamiseta,
+                    nombre = jugadorFromDb.nombre,
+                    apellidos = jugadorFromDb.apellidos,
+                    pie = jugadorFromDb.pie,
+                    posicion = jugadorFromDb.posicion, // Incluyendo 'posicion'
+                    goles = jugador.goles,
+                    partidosJugados = jugador.partidosJugados,
+                    // Añadir otras propiedades necesarias que no permitan nulos
+                });
             }
             else
             {
@@ -181,6 +191,7 @@ public IActionResult PutJugadores(int id, [FromBody] List<Jugador> jugadores)
         }
     }
 
+    // Guardar los cambios en la base de datos
     _context.SaveChanges();
 
     return NoContent();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cZZPYJVJlGIOFVQK5s6Y6WOtKGaEXKSlzKlm+ZYWI54z7zEuxrkT3DQe9SdZdoQ8FCHSTjO4wcLModnctBALjQ==",
+  "dgSpecHash": "01MMx204+d1aCTjj1UxQl1siCyBYlCkkFf2VriIGOLQDnCzGIQCfgOpI9LiiHa1hEbEnBp1qaMGom1cFmU60VQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Andrea\\Desktop\\tfgMiguel\\CpCalasancio\\CpCalasancio.csproj",
+  "projectFilePath": "C:\\Users\\Andrea\\Desktop\\Miguel_Rivero_torquemada_daw_2024\\CpCalasancio\\CpCalasancio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Andrea\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Andrea\\.nuget\\packages\\microsoft.applicationinsights\\2.16.0\\microsoft.applicationinsights.2.16.0.nupkg.sha512",

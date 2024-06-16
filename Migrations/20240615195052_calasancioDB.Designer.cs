@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CpCalasancio.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240613035733_calasancioDB")]
+    [Migration("20240615195052_calasancioDB")]
     partial class calasancioDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

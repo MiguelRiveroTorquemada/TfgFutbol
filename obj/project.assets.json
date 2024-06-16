@@ -6110,11 +6110,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrea\\Desktop\\tfgMiguel\\CpCalasancio\\CpCalasancio.csproj",
+      "projectUniqueName": "C:\\Users\\Andrea\\Desktop\\Miguel_Rivero_torquemada_daw_2024\\CpCalasancio\\CpCalasancio.csproj",
       "projectName": "CpCalasancio",
-      "projectPath": "C:\\Users\\Andrea\\Desktop\\tfgMiguel\\CpCalasancio\\CpCalasancio.csproj",
+      "projectPath": "C:\\Users\\Andrea\\Desktop\\Miguel_Rivero_torquemada_daw_2024\\CpCalasancio\\CpCalasancio.csproj",
       "packagesPath": "C:\\Users\\Andrea\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrea\\Desktop\\tfgMiguel\\CpCalasancio\\obj\\",
+      "outputPath": "C:\\Users\\Andrea\\Desktop\\Miguel_Rivero_torquemada_daw_2024\\CpCalasancio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Andrea\\AppData\\Roaming\\NuGet\\NuGet.Config"
